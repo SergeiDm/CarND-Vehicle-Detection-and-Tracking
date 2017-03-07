@@ -17,6 +17,8 @@ The project includes the following folder/files:
 - Vehicle_Detection_and_Tracking_Solution.ipynb - the script with pipeline.
 - project_video.mp4 - the video to test pipeline.
 - output_project_video.mp4 - the result of pipeline work on 'project_video.mp4'.
+- dist_coeff.p - the file with coefficients for image undistortion (used in function for video processing).
+- persp_coeff.p - the file with coefficients for image perspective transform (used in function for video processing).
 
 ## Data Exploration
 This section (see '1. Data Exploration' section of 'Vehicle_Detection_and_Tracking_Solution.ipynb') describes dataset used for training classifier to distinguish car images from non-car images. These images were taken from this sources:
