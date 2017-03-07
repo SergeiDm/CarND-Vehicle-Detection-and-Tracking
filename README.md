@@ -129,7 +129,7 @@ Hyperparameters for sliding windows, threshold for heatmap are the same as for p
 
 Moreover, I combined functions for lane lines (used in P4: Advanced-Lane-Finding) and vehicle detections in order to show their mutual detections.
 
-Here's a link to my video result: https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_project_video.mp4.
+Here's a link to my video result: [output_project_video.mp4](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_project_video.mp4).
 
 ## Discussion
 The pipeline for vehicle detection includes a lot of techniques, their hyperparameters and at the same time only one test video. The main problems for this case:
