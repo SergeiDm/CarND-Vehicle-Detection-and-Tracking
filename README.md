@@ -110,7 +110,7 @@ Sliding window technique may give duplicates and false positives. Examples:
 
 ![Duplicates and false positives](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/Duplicates_and_false_positives.jpg)
 
-To exclude duplicates and false positives, a heat-map was created in which overlapping detections combined (for every pixels inside box 1 is added, see 'add_heat' function in '2.6. Sliding Windows Search' section), so duplicates are combined. Applying threshold for value of pixels we exclude false positives.
+To exclude duplicates and false positives, a heat-map was created in which overlapping detections combined (for every pixels inside box 1 is added, see 'add_heat' function in '2.6. Sliding Windows Search' section), so duplicates are combined. Applying threshold (=3) for value of pixels false positives were excluded.
 
 For calculating how many cars in a heatmap, I used 'label' function from scipy.ndimage.measurements.
 
