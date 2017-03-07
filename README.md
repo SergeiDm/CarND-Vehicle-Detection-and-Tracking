@@ -65,9 +65,36 @@ In pictures above represented channels of color spaces give 'readable' informati
 
 ### Trainig classifier
 In '2.5. Training classifier' section I created 'single_img_features' function which exctract image features by using:
-- Spatial Binning of Color
-- Histograms of Color
-- Histogram of Oriented Gradients (HOG)
+- Spatial Binning of Color. Parameters: color space - HLS, all channels, spatial size - 8 x 8 pixels.
+- Histograms of Color. Parameters: color space - HSV, all channels, number of bins - 12.
+- Histogram of Oriented Gradients (HOG). Parameters: color space - GRAY, orientations - 9, size (in pixels) of a cell - 18, Number of cells in each block - 2.
+
+Ideas for feature extractors and choosing values for parameters were the following:
+- Using different features extractors may help to provide stable results in different conditions: size, shape, color, postion of a car.
+- Using HLS and HSV color spaces as ones which give a good car color representation.
+- Using values of parameters which on the one hand outputs acceptable results, but on the other hand provide keep computational cost reasonable small. In this case, once again, HLS and HSV channel are good choice.
+
+For classification I used linear support vector classifier, which is a good choice for speed and accuracy.
+
+I also tried different parameters and classifiers, but results were worse or computational cost was higher. Here are results of training classifier:
+"51.73 Seconds to extract features...
+Feature vector length: 372
+6.31 Seconds to train SVC...
+Test Accuracy of SVC =  0.9713
+SVC predicts:  [ 1.  1.  1.  0.  0.  0.  0.  0.  1.  0.]
+For these 10 labels:  [ 1.  1.  1.  0.  0.  0.  0.  0.  1.  0.]
+0.01563 Seconds to predict 10 labels with SVC"
+
+### Sliding Windows Search
+
+
+
+## Pipeline(video)
+
+
+
+## Discussion
+
 
 
 
