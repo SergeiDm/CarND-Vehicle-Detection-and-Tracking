@@ -72,11 +72,11 @@ In '2.5. Training classifier' section I created 'single_img_features' function w
 Ideas for feature extractors and choosing values for parameters were the following:
 - Using different features extractors may help to provide stable results in different conditions: size, shape, color, postion of a car.
 - Using HLS and HSV color spaces as ones which give a good car color representation.
-- Using values of parameters which on the one hand outputs acceptable results, but on the other hand provide keep computational cost reasonable small. In this case, once again, HLS and HSV channel are good choice.
+- Using values of hyperparameters which on the one hand outputs acceptable results, but on the other hand provide keep computational cost reasonable small. In this case, once again, HLS and HSV channel are good choice.
 
 For classification I used linear support vector classifier, which is a good choice for speed and accuracy.
 
-I also tried different parameters and classifiers, but results were worse or computational cost was higher. Here are results of training classifier:
+I also tried different hyperparameters and classifiers, but results were worse or computational cost was higher. Here are results of training classifier:
 - 51.73 Seconds to extract features...
 - Feature vector length: 372
 - 6.31 Seconds to train SVC...
@@ -121,41 +121,27 @@ Pipeline for video include the following steps:
 - Sliding windows search with trained classifier.
 - Car detections with applying heatmap for excluding duplicates and false positives.
 
-Parameters for sliding windows, threshold for heatmap are the same as for processing images.
+Hyperparameters for sliding windows, threshold for heatmap are the same as for processing images.
 
 Moreover, I combined functions for lane lines (used in P4: Advanced-Lane-Finding) and vehicle detections in order to show their mutual detections.
 
 Here's a link to my video result: https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_project_video.mp4.
 
 ## Discussion
-Discussion includes some consideration of problems/issues faced, what could be improved about their algorithm/pipeline, and what hypothetical cases would cause their pipeline to fail. 
-he pipeline which was applied here has the folowing main steps:
+The pipeline for vehicle detection includes a lot of techniques, their hyperparameters and at the same time only one test video. The main problems for this case:
+- How to find right combination all elements and hyperparameters which show a good performance.
+- Оverfitting. It means that for image examples with other conditions the pipeline may show poor performance. 
 
-    Camera Calibration.
-    Distortion Correction.
-    Creating binary images.
-    Perspective transform.
-    Detection Lane Lines pixels. Steps 'Creating binary images' and 'Detection Lane Lines pixels' have a lot of hyperparameters (e.g. min, max threshold, color space transformation and so on) and assumptions (we have both right and left lane lines on image, conditions allow us to identify lines). When we tune hyperparameters, we try to fit the pipeline for certain given exmaples. It may lead us to overfitting (in terms of neural network). It means when we meet video for example with a new weather conditions we may not to clearly identify lines.
+Examples of other conditions:
+- not sunny wheather,
+- other road surface colors,
+- not only cars, but also trucks,
+- new elements on a road which are not in the dataset,
+- new car positions, which are not in the dataset,
+- new car colors.
 
-The cases where the algorithm given here is likely to fail may be the following:
+Without representational dataset the probability that classifier will make an error increases, so it's reasonable to have different data in a dataset.
 
-    sunny wheather conditions,
-    shadows from objects,
-    changing road surface color,
-    a car going ahead,
-    double lines,
-    elements like barriers with yellow or white coloring,
-    poor images.
+Moreover, for increasing safety the pipeline may include several algorithm to detect cars. If one of them failed, other would detect a car.
 
-In cases listed above, lane lines pixels are complicated to distinguish from surrounding area. So for improving algorithm the following steps seem reasonable:
-
-    collect cases with different conditions (not only weather conditions, but also shadows, surface color and so on).
-    define a recovery algorithm when we lost lane lines track.
-    define some metrics to check that the results are correct and correction plan if they are not.
-    use other criteria for defining a car position.
-
-
-
-
-
-
+Finally, a creator of pipeline should remember also about speed-accuracy dilemma. An algorithm with good performance is likely to be slow and vice versa.
