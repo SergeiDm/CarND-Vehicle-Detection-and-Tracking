@@ -22,7 +22,10 @@ This section (see '1. Data Exploration' section of 'Vehicle_Detection_and_Tracki
 - https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip.
 - https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip.
 
-The Dataset includes 8792 car and 8968 non-car pictures. A picture is 64 x 64 pixels in 'png' file format. Dataset image examples:
+The Dataset includes 8792 car and 8968 non-car pictures. A picture is 64 x 64 pixels 'png' file. 
+
+Dataset image examples:
+
 ![Dataset_image_examples](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/dataset_image_examples.jpg)
 
 ## Pipeline (single images)
@@ -57,7 +60,7 @@ All HSV channels differentiate car and non-car images. From histograms we can se
 ### Histogram of Oriented Gradients (HOG)
 This features descriptor in distinction from previous two based on edge detection (of course, it is derivative of color, but not a color itself). HOG can be calculated with 'hog' function from scikit-image library. Deriving hog features is performed in 'get_hog_features' function (section '2.4. Histogram of Oriented Gradients (HOG)').
 
-Here are output examples (orient = 9, pix_per_cell = 8, cell_per_block = 2):
+Here are output examples (rientations - 9, size (in pixels) of a cell - 8, number of cells in each block - 2):
 
 ![Histogram of oriented gradients](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/Histogram_of_oriented_gradients.jpg)
 
