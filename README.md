@@ -7,6 +7,7 @@ The goal of the project is to write a software pipeline to identify vehicles in 
 - Training classifier.
 - Sliding Windows Search.
 - Car Detection.
+
 Vehicle detection in this project is built on considering different parts of an image and classificating them as a car or not car due to their feautures.
 
 ## Project files
