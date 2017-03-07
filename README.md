@@ -30,21 +30,44 @@ The Dataset includes 8792 car and 8968 non-car pictures. A picture is 64 x 64 pi
 Color spaces exploration is a way to find what kind of feature (color channel) can be used to distinguish a target object (in our case - a car) from other objects and background.
 In this project, function 'colorspace_repr' (section '2.1. Color Spaces Exploration') was defined to represent an image in 3D color space, e.g. HLS and HSV (commonly used in image processing). 
 
-Example:
+Example (spatial size = (8,8)):
+
 ![3D_color_space_repr](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/3D_color_space_repr.jpg)
 
 HLS and HSV 3D color space representations make car colors more distinguishable because of saturation. It may be used in features exctraction.
 
 ### Spatial Binning of Color
-Feature vector consisting on raw pixels can be useful for car detection, but instead of using of three color channels of a full resolution image, I decreased resolution to 8 x 8 pixels and applied 'numpy.ravel' function to create a flattened array. Before this, HLS color space conversion was used (see function 'bin_spatial' in '2.2. Spatial Binning of Color'). As stated above, this color space can make car colors more distinguishable. 
+Feature vector consisting on raw pixels can be useful for car detection, but instead of using of three color channels of a full resolution image, I decreased resolution to 8 x 8 pixels and applied 'numpy.ravel' function to create a flattened array. Before this, HLS color space conversion was used (function 'bin_spatial' in '2.2. Spatial Binning of Color' section). As stated above, this color space can make car colors more distinguishable. 
 
 Example:
+
 ![Spatial_binning_of_color](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/Spatial_binning_of_color.jpg)
 
 From pictures above, we can see that all three HLS channels can be used for creating feature vector. Other color spaces also may be used.
 
 ### Histograms of Color
+Another tool for creation feauture vector is histograms of raw pixel intensity. Concatenating histograms of different color channels we create a pattern of particular number of bins and pixels intensity range. In this project I used HSV color space for building of color channels histograms (function 'color_hist' in '2.3. Histograms of Color'). HSV color space gave a good distinguishable representation of car and non-car images due to in particular its saturation channel. 
 
+Here are examples (bins=12):
+
+![Histograms_of_color](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/Histograms_of_color.jpg)
+
+All HSV channels differentiate car and non-car images. From histograms we can see that an image with monotonous colors (2 pictures in the last two rows) gives bigger values for histograms than images which include different colors.
+
+### Histogram of Oriented Gradients (HOG)
+This features descriptor in distinction from previous two based on edge detection (of course, it is derivative of color, but not a color itself). HOG can be calculated with 'hog' function from scikit-image library. Deriving hog features is performed in 'get_hog_features' function (section '2.4. Histogram of Oriented Gradients (HOG)').
+
+Here are output examples (orient = 9, pix_per_cell = 8, cell_per_block = 2):
+
+![Histogram_of_oriented_gradients](https://github.com/SergeiDm/CarND-Vehicle-Detection-and-Tracking/blob/master/output_images/Histogram_of_oriented_gradients.jpg)
+
+In pictures above represented channels of color spaces give 'readable' information, but finally I used GRAY color space.
+
+### Trainig classifier
+In '2.5. Training classifier' section I created 'single_img_features' function which exctract image features by using:
+- Spatial Binning of Color
+- Histograms of Color
+- Histogram of Oriented Gradients (HOG)
 
 
 
