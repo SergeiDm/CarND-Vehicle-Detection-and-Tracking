@@ -3,7 +3,7 @@
 The goal of the project is to write a software pipeline to identify vehicles in a video from a front-facing camera on a car. The project includes the following steps:
 - Data Exploration.
 - Color Spaces Exploration.
-- Techniques for features exctraction.
+- Techniques for features extraction.
 - Training classifier.
 - Sliding Windows Search.
 - Car Detection.
